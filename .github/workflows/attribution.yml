@@ -25,9 +25,10 @@ jobs:
             echo "File: $file"
 
             commit=$(git log \
+              -n 1 \
               --diff-filter=A \
               --format='%H' \
-              -- "$file" | head -n 1)
+              -- "$file")
 
             if [ -z "$commit" ]; then
               echo "  Unable to determine introduction commit"
