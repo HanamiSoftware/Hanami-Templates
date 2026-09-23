@@ -15,30 +15,32 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Analyze file history
+      - name: Analyze original authors
         shell: bash
         run: |
-          echo "=== Hanami Attribution Report v2 ==="
+          echo "=== Hanami Attribution Report v3 ==="
           echo
 
           git ls-files '*.ts' '*.js' | while read -r file; do
             echo "File: $file"
 
-            echo "  Introduction commits:"
-            git log \
+            commit=$(git log \
               --diff-filter=A \
-              --format='    %h | %an | %ae | %ad | %s' \
-              --date=short \
-              -- "$file"
+              --format='%H' \
+              -- "$file" | head -n 1)
 
-            echo
+            if [ -z "$commit" ]; then
+              echo "  Unable to determine introduction commit"
+              echo
+              continue
+            fi
 
-            echo "  Rename commits:"
-            git log \
-              --diff-filter=R \
-              --format='    %h | %an | %ae | %ad | %s' \
-              --date=short \
-              -- "$file" || true
+            echo "  Introduction commit: $commit"
+
+            git show \
+              --summary \
+              --find-renames \
+              "$commit"
 
             echo
           done
