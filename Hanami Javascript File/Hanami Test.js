@@ -1,12 +1,10 @@
 /*
  * --------------------------------------------------------------------------
  *
- * Author:      $username$
+ * Author:      Francesco
  *
  * website: https://www.hanamisoftware.com
  * License:     MIT
- * Copyright (c) $year$ Hanami Software
+ * Copyright (c) 2026 Hanami Software
  * --------------------------------------------------------------------------
  */
-
-// test secondo autore
