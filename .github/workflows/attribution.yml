@@ -1,0 +1,36 @@
+name: Hanami Attribution Report
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  attribution:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate attribution report
+        shell: bash
+        run: |
+          echo "=== Hanami Attribution Report ==="
+          echo
+
+          git ls-files '*.ts' '*.js' | while read -r file; do
+            echo "$file"
+
+            git log --follow --format='%an|%ae|%ad' \
+              --date=short -- "$file" | tail -n 1 | \
+              awk -F'|' '{
+                print "  Author:  " $1
+                print "  Email:   " $2
+                print "  Created: " $3
+              }'
+
+            echo
+          done
