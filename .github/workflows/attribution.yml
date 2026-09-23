@@ -15,22 +15,30 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Generate attribution report
+      - name: Analyze file history
         shell: bash
         run: |
-          echo "=== Hanami Attribution Report ==="
+          echo "=== Hanami Attribution Report v2 ==="
           echo
 
           git ls-files '*.ts' '*.js' | while read -r file; do
-            echo "$file"
+            echo "File: $file"
 
-            git log --follow --format='%an|%ae|%ad' \
-              --date=short -- "$file" | tail -n 1 | \
-              awk -F'|' '{
-                print "  Author:  " $1
-                print "  Email:   " $2
-                print "  Created: " $3
-              }'
+            echo "  Introduction commits:"
+            git log \
+              --diff-filter=A \
+              --format='    %h | %an | %ae | %ad | %s' \
+              --date=short \
+              -- "$file"
+
+            echo
+
+            echo "  Rename commits:"
+            git log \
+              --diff-filter=R \
+              --format='    %h | %an | %ae | %ad | %s' \
+              --date=short \
+              -- "$file" || true
 
             echo
           done
