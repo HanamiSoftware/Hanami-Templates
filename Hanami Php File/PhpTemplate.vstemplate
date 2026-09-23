@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0"
+            Type="Item"
+            xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+
+  <TemplateData>
+    <Name>Hanami Php File</Name>
+    <Description>PHP file with Hanami Software information</Description>
+    <ProjectType>Php</ProjectType>
+    <SortOrder>1000</SortOrder>
+    <DefaultName>HanamiFile.php</DefaultName>
+  </TemplateData>
+
+  <TemplateContent>
+    <ProjectItem ReplaceParameters="true" TargetFileName="$fileinputname$.php">
+      Hanami Php File.php
+    </ProjectItem>
+  </TemplateContent>
+
+</VSTemplate>

@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Hanami-Templates.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+</Solution>

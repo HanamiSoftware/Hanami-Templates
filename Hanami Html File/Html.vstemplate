@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0"
+            Type="Item"
+            xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+
+  <TemplateData>
+    <Name>Hanami Html File</Name>
+    <Description>HTML file with Hanami Software information</Description>
+    <ProjectType>Javascript</ProjectType>
+    <SortOrder>1000</SortOrder>
+    <DefaultName>HanamiFile.html</DefaultName>
+  </TemplateData>
+
+  <TemplateContent>
+    <ProjectItem ReplaceParameters="true" TargetFileName="$fileinputname$.html">
+      Hanami Html File.html
+    </ProjectItem>
+  </TemplateContent>
+
+</VSTemplate>
